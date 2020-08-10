@@ -1,0 +1,21 @@
+{
+  "name": "capture-now",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lunch-poll": "node flows/lunch-poll",
+    "snack-poll": "node flows/snack-poll",
+    "import": "node flows/import",
+    "receipt": "node flows/receipt"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.688.0",
+    "dotenv": "^8.2.0",
+    "firebase-admin": "^9.0.0",
+    "node-fetch": "^2.6.0",
+    "puppeteer": "^3.2.0"
+  }
+}
