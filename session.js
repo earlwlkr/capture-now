@@ -1,7 +1,7 @@
 const allCookies = [
   {
     domain: '.chat.zalo.me',
-    expirationDate: 1612754367.098857,
+    expirationDate: 1612840020.297604,
     hostOnly: false,
     httpOnly: true,
     name: 'zpw_sek',
@@ -11,12 +11,12 @@ const allCookies = [
     session: false,
     storeId: '0',
     value:
-      'tpcq.239985360.a0.hzZZG7gs9-2gL6hkMxOdu06KGejOZ0Mo7OLLiW_WGPXHqd7K4z93Z0_yPQKTYnh21z7I76bDukhjjvA_IUadu0',
+      '1FX_.239985360.a0.tcF1rxCyxcfZtgDaaZpkQiWUYm6H1imorL_UFFjTlIA1TDWdrtA-ADqFXZho0TD8pbiRbg37As0aFQB4XsFhMG',
     id: 1,
   },
   {
     domain: '.chat.zalo.me',
-    expirationDate: 1612754359.553304,
+    expirationDate: 1612840012.624085,
     hostOnly: false,
     httpOnly: true,
     name: 'zpw_sekm',
@@ -26,12 +26,12 @@ const allCookies = [
     session: false,
     storeId: '0',
     value:
-      '3fGG.239985360.104.g7s9DvH9oGD4guGDcKd90-4wh76cUl0wh7pwDQGkFF-7iWm90qW8HwOMoGC',
+      'YkkA.239985360.107.BT9XH-k0jiexOll4ve2sofxpqxZPiu_pqxM5_DldGpRuUtF0V84mfzZVjie',
     id: 2,
   },
   {
     domain: '.zalo.me',
-    expirationDate: 1659410360.421129,
+    expirationDate: 1659496013.352071,
     hostOnly: false,
     httpOnly: false,
     name: '__zi',
@@ -46,7 +46,7 @@ const allCookies = [
   },
   {
     domain: '.zalo.me',
-    expirationDate: 1659410360.421181,
+    expirationDate: 1659496013.352134,
     hostOnly: false,
     httpOnly: false,
     name: '__zi-legacy',
@@ -61,7 +61,7 @@ const allCookies = [
   },
   {
     domain: '.zalo.me',
-    expirationDate: 1597288759.711375,
+    expirationDate: 1597374412.806254,
     hostOnly: false,
     httpOnly: false,
     name: '_zlang',
@@ -75,7 +75,7 @@ const allCookies = [
   },
   {
     domain: '.zalo.me',
-    expirationDate: 1597375165.073229,
+    expirationDate: 1597460818.079824,
     hostOnly: false,
     httpOnly: true,
     name: 'app.event.zalo.me',
@@ -89,7 +89,7 @@ const allCookies = [
   },
   {
     domain: '.zalo.me',
-    expirationDate: 1660274371,
+    expirationDate: 1660360025,
     hostOnly: false,
     httpOnly: false,
     name: 'fpsend',
@@ -98,12 +98,12 @@ const allCookies = [
     secure: false,
     session: false,
     storeId: '0',
-    value: '147889',
+    value: '147897',
     id: 7,
   },
   {
     domain: '.zalo.me',
-    expirationDate: 1628665921.711238,
+    expirationDate: 1628741894.806074,
     hostOnly: false,
     httpOnly: true,
     name: 'zpsid',
@@ -113,12 +113,12 @@ const allCookies = [
     session: false,
     storeId: '0',
     value:
-      'tcFc.239985360.58.En1yijM8YC85QiNCsOY8mg3x-l3ciR7wuBk-yh9zTD5eC0ojr4ZCy8g8YC8',
+      '60M4.239985360.61.QdcuzfHzoJT4duGvc7t9D-4EkmMdHF0FeKx_1_E8DIGfnKrObVka1CjzoJS',
     id: 8,
   },
   {
     domain: '.zalo.me',
-    expirationDate: 1628665921.711311,
+    expirationDate: 1628741894.80618,
     hostOnly: false,
     httpOnly: true,
     name: 'zpsidleg',
@@ -128,7 +128,7 @@ const allCookies = [
     session: false,
     storeId: '0',
     value:
-      'tcFc.239985360.58.En1yijM8YC85QiNCsOY8mg3x-l3ciR7wuBk-yh9zTD5eC0ojr4ZCy8g8YC8',
+      '60M4.239985360.61.QdcuzfHzoJT4duGvc7t9D-4EkmMdHF0FeKx_1_E8DIGfnKrObVka1CjzoJS',
     id: 9,
   },
 ];
