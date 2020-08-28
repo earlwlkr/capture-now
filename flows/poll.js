@@ -11,7 +11,7 @@ async function doPoll(
   orderText,
   orders
 ) {
-  console.log('doPoll', convName);
+  console.log('doPoll', convName, vendors.length);
   const { browser, page } = await initBrowser();
 
   let preface = '';
@@ -75,7 +75,6 @@ async function doPoll(
       return prev;
     }, '')
     .trim();
-  console.log(vendorDesc);
 
   await zalo.sendText(page, convName, vendorDesc);
   await zalo.createPoll(page, convName, pollTitle, vendorNames);

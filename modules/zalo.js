@@ -25,6 +25,7 @@ async function redirectTo(page, url) {
       const signInPassword = await page.$('input[type=password]');
       if (signInPassword) {
         await signInPassword.type(process.env.ZALO_PW);
+        console.log('typing pw');
         const signInBtn = await page.$(
           '#app > div > div.zLogin-layout.parentDisable > div.body > div > div > div > div > div > div:nth-child(1) > div > div > div > div > div.textAlign-center.has-2btn > a'
         );
