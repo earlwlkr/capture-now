@@ -56,19 +56,29 @@ async function uploadPhotoToConv(page, convName, filePath) {
   dropZoneInput.uploadFile(filePath);
 }
 
-async function sendText(page, convName, text) {
-  await redirectTo(page, 'https://chat.zalo.me');
-  await selectConv(page, convName);
+//async function sendText(page, convName, text) {
+async function sendText(msg, convId, text) {
+  // await redirectTo(page, 'https://chat.zalo.me');
+  // await selectConv(page, convName);
 
-  await page.waitForSelector(SELECTORS.msgInput);
-  await page.focus(SELECTORS.msgInput);
-  await page.keyboard.sendCharacter(text);
+  // await page.waitForSelector(SELECTORS.msgInput);
+  // await page.focus(SELECTORS.msgInput);
+  // await page.keyboard.sendCharacter(text);
 
-  const textInput = await page.$(SELECTORS.msgInput);
-  //   await textInput.type(text, { delay: 20 });
+  // const textInput = await page.$(SELECTORS.msgInput);
+  // //   await textInput.type(text, { delay: 20 });
 
-  await textInput.press('Enter');
-  await page.waitFor(2000);
+  // await textInput.press('Enter');
+  // await page.waitFor(2000);
+
+  const params = {
+    clientId: Date.now(),
+    grid: convId,
+    message: text,
+    visibility: 0,
+  };
+
+  return msg.sendText(params);
 }
 
 async function createPoll(page, convName, pollTitle, pollOptions) {
