@@ -13,7 +13,7 @@ async function doPoll(
   convId
 ) {
   console.log('doPoll', convName, vendors.length);
-  const { browser, page, msg } = await initBrowser();
+  const { browser, page } = await initBrowser();
 
   let preface = '';
   const vendorStats = new Map();
@@ -78,7 +78,7 @@ async function doPoll(
     .trim();
 
   // await zalo.sendText(page, convName, vendorDesc);
-  await zalo.sendText(msg, convId, vendorDesc);
+  await zalo.sendText(convId, vendorDesc);
   await zalo.createPoll(page, convName, pollTitle, vendorNames);
   const pollCloseTime = new Date(Date.now() + pollDuration * 60000);
   // await zalo.sendText(
@@ -87,14 +87,13 @@ async function doPoll(
   //   `Mọi người chọn quán cho ${utils.getDateString()}, chốt lúc ${pollCloseTime.getHours()}:${pollCloseTime.getMinutes()}.`
   // );
   await zalo.sendText(
-    msg,
     convId,
     `Mọi người chọn quán cho ${utils.getDateString()}, chốt lúc ${pollCloseTime.getHours()}:${pollCloseTime.getMinutes()}.`
   );
   if (preface) {
     await page.waitFor(200);
     // await zalo.sendText(page, convName, preface);
-    await zalo.sendText(msg, convId, preface);
+    await zalo.sendText(convId, preface);
   }
   console.log('waiting for', pollDuration);
   await page.waitFor(pollDuration * 60000);
@@ -117,7 +116,7 @@ async function doPoll(
   finalOrderText += `\n${orderUrl}\n`;
   console.log('finalOrderText', finalOrderText);
   // await zalo.sendText(page, convName, finalOrderText);
-  await zalo.sendText(msg, convId, finalOrderText);
+  await zalo.sendText(convId, finalOrderText);
   await browser.close();
 }
 

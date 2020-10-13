@@ -1,6 +1,5 @@
 const puppeteer = require('puppeteer');
 const cookies = require('./session');
-const Msg = require('./send-msg-module');
 
 async function initBrowser() {
   const browser = await puppeteer.launch({
@@ -10,8 +9,7 @@ async function initBrowser() {
   const page = await browser.newPage();
   page.setCookie(...cookies);
 
-  const msg = new Msg(DECRYPT_KEY_VALUE, SESSION_KEY);
-  return { browser, page, msg };
+  return { browser, page };
 }
 
 module.exports = initBrowser;

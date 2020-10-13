@@ -1,12 +1,15 @@
-const { doCallApi } = require('./utils');
+const { doCallApi } = require('./lib/utils');
 
 class ApiCall {
-  constructor(decryptKey, sessionKey) {
-    this.decryptKey = decryptKey;
-    this.sessionKey = sessionKey;
+  constructor(commonParams) {
+    this.commonParams = commonParams;
   }
   doCallApi(endPoint, params) {
-    return doCallApi(endPoint, params, this.decryptKey, this.sessionKey);
+    return doCallApi({
+      endPoint,
+      params,
+      commonParams: this.commonParams,
+    });
   }
 }
 

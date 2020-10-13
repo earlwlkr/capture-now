@@ -17,21 +17,21 @@ const ENDPOINT_UPLOAD =
 // const ENDPOINT_UPLOAD =
 //   "https://files-wpa.chat.zalo.me/api/message/sharefile_full?";
 
-function sendText(params, decryptKey, sessionKey) {
-  const apiCall = new ApiCall(decryptKey, sessionKey);
+function sendText({ params, commonParams }) {
+  const apiCall = new ApiCall(commonParams);
   const isGroup = params.hasOwnProperty('grid');
   const endPoint = isGroup ? ENDPOINT_TEXT.GROUP : ENDPOINT_TEXT.ONE;
 
   return apiCall.doCallApi(endPoint, params);
 }
 
-function createPoll(params, decryptKey, sessionKey) {
-  const apiCall = new ApiCall(decryptKey, sessionKey);
+function createPoll({ params, commonParams }) {
+  const apiCall = new ApiCall(commonParams);
   const isGroup = params.hasOwnProperty('group_id');
   const endPoint = ENDPOINT_POLL;
 
   if (!isGroup) return;
-  apiCall.doCallApi(endPoint, params);
+  return apiCall.doCallApi(endPoint, params);
 }
 
 function createTopic(params, decryptKey, sessionKey) {

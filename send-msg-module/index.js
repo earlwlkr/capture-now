@@ -7,16 +7,21 @@ const {
 } = require('./lib/utils');
 
 class Msg {
-  constructor(decryptKey, sessionKey) {
-    this.decryptKey = decryptKey;
-    this.sessionKey = sessionKey;
+  constructor(commonParams) {
+    this.commonParams = commonParams;
   }
 
   sendText(params) {
-    return sendText(params, this.decryptKey, this.sessionKey);
+    return sendText({
+      params,
+      commonParams: this.commonParams,
+    });
   }
   createPoll(params) {
-    createPoll(params, this.decryptKey, this.sessionKey);
+    return createPoll({
+      params,
+      commonParams: this.commonParams,
+    });
   }
   createTopic(params) {
     createTopic(params, this.decryptKey, this.sessionKey);

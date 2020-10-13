@@ -1,17 +1,6 @@
 const crypto = require('crypto');
 const axios = require('axios');
 
-const runConfig = require('./runConfig');
-
-const SECRET_KEY = runConfig.secretKey;
-const SESSION_KEY = runConfig.sessionKey;
-
-const commonParams = {
-  zpw_ver: runConfig.apiVer,
-  zpw_type: runConfig.apiType,
-  zpw_sek: SESSION_KEY,
-};
-
 function constructUrlParams(obj) {
   let temp = [];
   for (let k in obj) {
@@ -20,11 +9,6 @@ function constructUrlParams(obj) {
     }
   }
   return temp.join('&');
-}
-
-function _getCommonParams(sessionKey) {
-  const newCommonParams = { ...commonParams, zpw_sek: sessionKey };
-  return constructUrlParams(newCommonParams);
 }
 
 function encodeAES(data, encryptKey) {
@@ -63,11 +47,11 @@ function doRequest(url) {
   return axios.get(url);
 }
 
-function doCallApi(endpoint, params, decryptKey, sessionKey, resolve, reject) {
-  let url = endpoint;
-  url +=
-    _getCommonParams(sessionKey) +
-    '&params=' +
+function doCallApi({ endPoint, params, commonParams }) {
+  let url = endPoint;
+  const { decryptKey, ...restCommonParams } = commonParams;
+  url += constructUrlParams(restCommonParams);
+  +'&params=' +
     encodeURIComponent(encodeAES(JSON.stringify(params), decryptKey)) +
     '&type=11'; // cho gui file
 
