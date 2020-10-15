@@ -7,6 +7,7 @@ const Bucket = require('../lib/bucket');
 
 const POLL_DURATION = config.SNACK_POLL_DURATION_IN_MINUTES;
 const CONVERSATION_NAME = 'Ăn vặt hội';
+const CONVERSATION_ID = config.CONV_ID;
 
 const POLL_TITLE = `Đặt ăn vặt ${utils.getDateString()}`;
 const ORDER_TEXT = `Mọi người đặt ăn vặt cho ${utils.getDateString()}:`;
@@ -22,7 +23,7 @@ async function createSnackPoll() {
     return console.error(err);
   }
 
-  doPoll(CONVERSATION_NAME, vendors, POLL_DURATION, POLL_TITLE, ORDER_TEXT);
+  doPoll(CONVERSATION_NAME, vendors, POLL_DURATION, POLL_TITLE, ORDER_TEXT, [], CONVERSATION_ID);
 }
 
 createSnackPoll();
