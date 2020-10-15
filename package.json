@@ -11,6 +11,10 @@
   },
   "author": "",
   "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "send-msg-module"
+  ],
   "dependencies": {
     "aws-sdk": "^2.688.0",
     "dotenv": "^8.2.0",

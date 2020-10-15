@@ -1,5 +1,4 @@
 const puppeteer = require('puppeteer');
-
 const cookies = require('./session');
 
 async function initBrowser() {
@@ -9,6 +8,7 @@ async function initBrowser() {
   });
   const page = await browser.newPage();
   page.setCookie(...cookies);
+
   return { browser, page };
 }
 
