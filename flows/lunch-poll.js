@@ -8,7 +8,7 @@ const Bucket = require('../lib/bucket');
 
 const POLL_DURATION = config.LUNCH_POLL_DURATION_IN_MINUTES;
 const CONVERSATION_NAME = config.CONV_NAME;
-
+const CONVERSATION_ID = config.CONV_ID;
 const POLL_TITLE = `Đặt món ${utils.getDateString()}`;
 const ORDER_TEXT = `Mọi người đặt món cho ${utils.getDateString()}:`;
 
@@ -30,7 +30,8 @@ async function createLunchPoll() {
     POLL_DURATION,
     POLL_TITLE,
     ORDER_TEXT,
-    orders
+    orders,
+    CONVERSATION_ID
   );
 }
 

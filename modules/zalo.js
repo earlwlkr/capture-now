@@ -1,3 +1,13 @@
+const cookies = require('../session');
+const Msg = require('../send-msg-module');
+
+const msg = new Msg({
+  decryptKey: cookies.DECRYPT_KEY_VALUE,
+  sessionKey: cookies.SESSION_KEY,
+  zpwVersion: cookies.ZPW_VERSION,
+  zpwType: cookies.ZPW_TYPE,
+});
+
 const SELECTORS = {
   signInAvatar: '.avatar.otr-2',
   msgInput: '#richInput',
@@ -56,57 +66,88 @@ async function uploadPhotoToConv(page, convName, filePath) {
   dropZoneInput.uploadFile(filePath);
 }
 
-async function sendText(page, convName, text) {
-  await redirectTo(page, 'https://chat.zalo.me');
-  await selectConv(page, convName);
+//async function sendText(page, convName, text) {
+async function sendText({ convId, text }) {
+  // await redirectTo(page, 'https://chat.zalo.me');
+  // await selectConv(page, convName);
 
-  await page.waitForSelector(SELECTORS.msgInput);
-  await page.focus(SELECTORS.msgInput);
-  await page.keyboard.sendCharacter(text);
+  // await page.waitForSelector(SELECTORS.msgInput);
+  // await page.focus(SELECTORS.msgInput);
+  // await page.keyboard.sendCharacter(text);
 
-  const textInput = await page.$(SELECTORS.msgInput);
-  //   await textInput.type(text, { delay: 20 });
+  // const textInput = await page.$(SELECTORS.msgInput);
+  // //   await textInput.type(text, { delay: 20 });
 
-  await textInput.press('Enter');
-  await page.waitFor(2000);
+  // await textInput.press('Enter');
+  // await page.waitFor(2000);
+
+  const params = {
+    clientId: Date.now(),
+    grid: convId,
+    message: text,
+    visibility: 0,
+  };
+
+  return msg.sendText(params);
 }
 
-async function createPoll(page, convName, pollTitle, pollOptions) {
-  await redirectTo(page, 'https://chat.zalo.me');
-  await selectConv(page, convName);
+// async function createPoll(page, convName, pollTitle, pollOptions) {
+async function createPoll({
+  convId,
+  question,
+  expiredTime = 0,
+  options = [],
+  allowAddOption = true,
+  allowMutiChoices = true,
+}) {
+  // await redirectTo(page, 'https://chat.zalo.me');
+  // await selectConv(page, convName);
 
-  console.log('createPoll', convName, pollTitle);
-  await page.waitFor(SELECTORS.moreInputBtn);
-  const moreInput = await page.$(SELECTORS.moreInputBtn);
-  await moreInput.click();
-  await page.evaluate(() => {
-    const element = Array.from(
-      document.querySelectorAll('.menu-more-option')
-    ).find(el => el.textContent.toString().indexOf('Tạo bình chọn') !== -1);
-    element.click();
-  });
+  // console.log('createPoll', convName, pollTitle);
+  // await page.waitFor(SELECTORS.moreInputBtn);
+  // const moreInput = await page.$(SELECTORS.moreInputBtn);
+  // await moreInput.click();
+  // await page.evaluate(() => {
+  //   const element = Array.from(
+  //     document.querySelectorAll('.menu-more-option')
+  //   ).find(el => el.textContent.toString().indexOf('Tạo bình chọn') !== -1);
+  //   element.click();
+  // });
 
-  const pollTitleElement = await page.$(SELECTORS.pollTitleInput);
-  await pollTitleElement.type(pollTitle, { delay: 20 });
+  // const pollTitleElement = await page.$(SELECTORS.pollTitleInput);
+  // await pollTitleElement.type(pollTitle, { delay: 20 });
 
-  let pollOptionIndex = 0;
-  const pollInputSelector = SELECTORS.pollOptionInput;
-  let pollInputElement = await page.$(pollInputSelector);
-  await pollInputElement.type(pollOptions[pollOptionIndex++], { delay: 20 });
+  // let pollOptionIndex = 0;
+  // const pollInputSelector = SELECTORS.pollOptionInput;
+  // let pollInputElement = await page.$(pollInputSelector);
+  // await pollInputElement.type(pollOptions[pollOptionIndex++], { delay: 20 });
 
-  while (pollOptionIndex < pollOptions.length) {
-    const pollInputElements = await page.$$(pollInputSelector);
-    await pollInputElements[pollInputElements.length - 1].type(
-      pollOptions[pollOptionIndex++],
-      { delay: 20 }
-    );
-  }
-  await page.evaluate(() => {
-    const element = Array.from(document.querySelectorAll('.btn')).find(
-      el => el.textContent.toString().indexOf('Tạo bình chọn') !== -1
-    );
-    element.click();
-  });
+  // while (pollOptionIndex < pollOptions.length) {
+  //   const pollInputElements = await page.$$(pollInputSelector);
+  //   await pollInputElements[pollInputElements.length - 1].type(
+  //     pollOptions[pollOptionIndex++],
+  //     { delay: 20 }
+  //   );
+  // }
+  // await page.evaluate(() => {
+  //   const element = Array.from(document.querySelectorAll('.btn')).find(
+  //     el => el.textContent.toString().indexOf('Tạo bình chọn') !== -1
+  //   );
+  //   element.click();
+  // });
+  const params = {
+    allow_add_new_option: allowAddOption,
+    allow_multi_choices: allowMutiChoices,
+    expired_time: expiredTime,
+    group_id: convId,
+    is_anonymous: false,
+    options,
+    poll_type: 0,
+    question,
+    src: 1,
+  };
+
+  return msg.createPoll(params);
 }
 
 async function getMostVoted(page, convName) {
