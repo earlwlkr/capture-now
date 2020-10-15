@@ -25,11 +25,10 @@ async function doPoll(
     const unpaid = orders[0].userItems.filter(i => !i.paid);
     if (unpaid.length > 0) {
       const receiptPath = 'https://tabber.vercel.app/orders';
-      preface = `Còn ${
-        unpaid.length
-      } phần chưa được thanh toán cho ${utils.getDateString(
-        new Date(orders[0].orderTime)
-      )}: ${receiptPath}`;
+      preface = `Còn ${unpaid.length
+        } phần chưa được thanh toán cho ${utils.getDateString(
+          new Date(orders[0].orderTime)
+        )}: ${receiptPath}`;
     }
     for (let order of orders) {
       const { restaurant, ship, orderTime, deliveryTime } = order;
@@ -44,7 +43,7 @@ async function doPoll(
       stats.avgDuration = Math.round(
         (stats.avgDuration * (stats.times - 1) +
           Math.round((new Date(deliveryTime) - new Date(orderTime)) / 60000)) /
-          stats.times
+        stats.times
       );
       vendorStats.set(restaurant.name, stats);
     }
@@ -78,13 +77,13 @@ async function doPoll(
     .trim();
 
   // await zalo.sendText(page, convName, vendorDesc);
-  await zalo.sendText(convId, vendorDesc);
+  await zalo.sendText({ convId, text: vendorDesc });
   // await zalo.createPoll(page, convName, pollTitle, vendorNames);
   await zalo.createPoll({
     convId,
     question: pollTitle,
     expiredTime: 0,
-    options:vendorNames,
+    options: vendorNames,
     allowAddOption: true,
     allowMutiChoices: true,
   })
@@ -94,14 +93,14 @@ async function doPoll(
   //   convName,
   //   `Mọi người chọn quán cho ${utils.getDateString()}, chốt lúc ${pollCloseTime.getHours()}:${pollCloseTime.getMinutes()}.`
   // );
-  await zalo.sendText(
+  await zalo.sendText({
     convId,
-    `Mọi người chọn quán cho ${utils.getDateString()}, chốt lúc ${pollCloseTime.getHours()}:${pollCloseTime.getMinutes()}.`
-  );
+    text: `Mọi người chọn quán cho ${utils.getDateString()}, chốt lúc ${pollCloseTime.getHours()}:${pollCloseTime.getMinutes()}.`
+  });
   if (preface) {
     await page.waitFor(200);
     // await zalo.sendText(page, convName, preface);
-    await zalo.sendText(convId, preface);
+    await zalo.sendText({ convId, text: preface });
   }
   console.log('waiting for', pollDuration);
   await page.waitFor(pollDuration * 60000);
@@ -124,7 +123,7 @@ async function doPoll(
   finalOrderText += `\n${orderUrl}\n`;
   console.log('finalOrderText', finalOrderText);
   // await zalo.sendText(page, convName, finalOrderText);
-  await zalo.sendText(convId, finalOrderText);
+  await zalo.sendText({ convId, text: finalOrderText });
   await browser.close();
 }
 
