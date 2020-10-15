@@ -79,7 +79,15 @@ async function doPoll(
 
   // await zalo.sendText(page, convName, vendorDesc);
   await zalo.sendText(convId, vendorDesc);
-  await zalo.createPoll(page, convName, pollTitle, vendorNames);
+  // await zalo.createPoll(page, convName, pollTitle, vendorNames);
+  await createPoll({
+    convId,
+    question: pollTitle,
+    expiredTime: 0,
+    options:vendorNames,
+    allowAddOption: true,
+    allowMutiChoices: true,
+  })
   const pollCloseTime = new Date(Date.now() + pollDuration * 60000);
   // await zalo.sendText(
   //   page,
