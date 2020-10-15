@@ -8,6 +8,7 @@ const msg = new Msg({
   zpwType: cookies.ZPW_TYPE,
 });
 
+
 const SELECTORS = {
   signInAvatar: '.avatar.otr-2',
   msgInput: '#richInput',

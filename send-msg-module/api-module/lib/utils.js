@@ -50,8 +50,9 @@ function doRequest(url) {
 function doCallApi({ endPoint, params, commonParams }) {
   let url = endPoint;
   const { decryptKey, ...restCommonParams } = commonParams;
-  url += constructUrlParams(restCommonParams);
-  +'&params=' +
+  const newCommonParams = { zpw_ver: restCommonParams.zpwVersion, zpw_type: restCommonParams.zpwType, zpw_sek: restCommonParams.sessionKey };
+  url += constructUrlParams(newCommonParams)
+    + '&params=' +
     encodeURIComponent(encodeAES(JSON.stringify(params), decryptKey)) +
     '&type=11'; // cho gui file
 
