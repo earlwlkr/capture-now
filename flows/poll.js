@@ -13,7 +13,7 @@ async function doPoll(
   convId
 ) {
   console.log('doPoll', convName, vendors.length);
-  const { browser, page } = await initBrowser();
+  // const { browser, page } = await initBrowser();
 
   let preface = '';
   const vendorStats = new Map();
