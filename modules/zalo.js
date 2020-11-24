@@ -1,13 +1,11 @@
-const cookies = require('../session');
-const Msg = require('../send-msg-module');
+const ZaloClient = require('zalo-client');
 
-const msg = new Msg({
-  decryptKey: cookies.DECRYPT_KEY_VALUE,
-  sessionKey: cookies.SESSION_KEY,
-  zpwVersion: cookies.ZPW_VERSION,
-  zpwType: cookies.ZPW_TYPE,
+const msg = new ZaloClient({
+  decryptKey: process.env.ZALO_ENCRYPT_KEY,
+  sessionKey: process.env.ZALO_SESSION_KEY,
+  zpwVersion: 63,
+  zpwType: 30,
 });
-
 
 const SELECTORS = {
   signInAvatar: '.avatar.otr-2',

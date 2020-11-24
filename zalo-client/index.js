@@ -6,7 +6,7 @@ const {
   uploadImg,
 } = require('./lib');
 
-class Msg {
+class ZaloClient {
   constructor(commonParams) {
     this.commonParams = commonParams;
   }
@@ -35,4 +35,4 @@ class Msg {
   }
 }
 
-module.exports = Msg;
+module.exports = ZaloClient;

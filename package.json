@@ -13,7 +13,7 @@
   "license": "ISC",
   "private": true,
   "workspaces": [
-    "send-msg-module"
+    "zalo-client"
   ],
   "dependencies": {
     "aws-sdk": "^2.688.0",
