@@ -1,4 +1,4 @@
-const { doCallApi } = require('./lib/utils');
+const { doCallApi } = require('./lib');
 
 class ApiCall {
   constructor(commonParams) {

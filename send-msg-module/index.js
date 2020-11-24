@@ -4,7 +4,7 @@ const {
   createTopic,
   sendImg,
   uploadImg,
-} = require('./lib/utils');
+} = require('./lib');
 
 class Msg {
   constructor(commonParams) {
