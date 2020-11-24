@@ -36,13 +36,6 @@ function decodeAES(data, encryptKey) {
   return resp;
 }
 
-// function doRequest(url, form) {
-//   // return axios.get(url);
-
-//   // testing upload photo
-//   return axios.post(url, form);
-// }
-
 function doRequest(url) {
   return axios.get(url);
 }
@@ -50,43 +43,16 @@ function doRequest(url) {
 function doCallApi({ endPoint, params, commonParams }) {
   let url = endPoint;
   const { decryptKey, ...restCommonParams } = commonParams;
-  const newCommonParams = { zpw_ver: restCommonParams.zpwVersion, zpw_type: restCommonParams.zpwType, zpw_sek: restCommonParams.sessionKey };
-  url += constructUrlParams(newCommonParams)
-    + '&params=' +
+  const newCommonParams = {
+    zpw_ver: restCommonParams.zpwVersion,
+    zpw_type: restCommonParams.zpwType,
+    zpw_sek: restCommonParams.sessionKey,
+  };
+  url +=
+    constructUrlParams(newCommonParams) +
+    '&params=' +
     encodeURIComponent(encodeAES(JSON.stringify(params), decryptKey)) +
     '&type=11'; // cho gui file
-
-  // testing upload photo
-  // const fs = require('fs');
-  // fs.readFile('./1kbimage.jpg', function (err, data) {
-  //   const FormData = require('form-data');
-  //   const form = new FormData();
-  //   form.append('chunkContent', data, '1kbimage.jpg');
-  //   return doRequest(url, form)
-  //     .then((res) => {
-  //       console.log('-------------response----------------');
-  //       console.log('request res', res);
-  //       const decoded = decodeAES(res.data.data, decryptKey);
-  //       const parsedRes = JSON.parse(decoded);
-  //       console.log('-------------data response----------------');
-  //       console.log('request parsedRes', parsedRes);
-  //       return parsedRes;
-  //     })
-  //     .catch((err) => {
-  //       console.error('request error', err);
-  //     });
-  // });
-
-  // return doRequest(url)
-  //   .then(res => {
-  //     const decoded = decodeAES(res.data.data, decryptKey);
-  //     const parsedRes = JSON.parse(decoded);
-  //     console.log('request parsedRes', parsedRes);
-  //     return parsedRes;
-  //   })
-  //   .catch(err => {
-  //     console.error('request error', err);
-  //   });
 
   return new Promise((resolve, reject) => {
     doRequest(url)

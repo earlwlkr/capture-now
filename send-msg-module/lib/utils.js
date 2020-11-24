@@ -13,9 +13,6 @@ const ENDPOINT_IMAGE =
 
 const ENDPOINT_UPLOAD =
   'https://files-wpa.chat.zalo.me/api/group/photo_original/upload?';
-// const ENDPOINT_UPLOAD = "https://files-wpa.chat.zalo.me/api/message/photo?";
-// const ENDPOINT_UPLOAD =
-//   "https://files-wpa.chat.zalo.me/api/message/sharefile_full?";
 
 function sendText({ params, commonParams }) {
   const apiCall = new ApiCall(commonParams);
